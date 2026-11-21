@@ -1,130 +1,88 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Leonida Trophy Guide — GTA VI (PS5) · 55 Trophies, Tracker &amp; Roadmap</title>
-<meta name="description" content="An offline guide and tracker for all 55 Grand Theft Auto VI trophies on PS5: official names, descriptions and grades, a cited guide to each, a 3-step road to the platinum, missable flags, and a checklist saved in your browser.">
+<title>The Leonida Ledger — GTA 6 Trophy Guide &amp; Tracker</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="masthead">
-  <div class="masthead-inner">
-    <p class="kicker">Grand Theft Auto VI · PlayStation 5 · Released 19 November 2026</p>
-    <h1>Leonida Trophy Guide</h1>
-    <p class="subtitle">Every one of the 55 trophies — official name, description and grade, a guide to each with its sources, a road to the platinum, and a tracker that remembers your progress. Unofficial fan guide, works fully offline.</p>
-    <div class="counts" id="counts" aria-live="polite">
-      <span class="count"><strong id="count-total">55</strong> trophies</span>
-      <span class="count"><span class="medal platinum" aria-hidden="true"></span> <strong>1</strong> platinum</span>
-      <span class="count"><span class="medal gold" aria-hidden="true"></span> <strong>2</strong> gold</span>
-      <span class="count"><span class="medal silver" aria-hidden="true"></span> <strong>6</strong> silver</span>
-      <span class="count"><span class="medal bronze" aria-hidden="true"></span> <strong>46</strong> bronze</span>
-      <span class="count"><strong>28</strong> hidden</span>
-      <span class="count"><strong>0</strong> online</span>
+<header class="topbar">
+  <div class="brand">
+    <span class="mark" aria-hidden="true">LL</span>
+    <div>
+      <h1>THE LEONIDA LEDGER</h1>
+      <p>Grand Theft Auto VI · Trophy Guide · PlayStation 5 · Official list, 18 Nov 2026</p>
     </div>
-    <div class="progress-wrap">
-      <div class="progress-label"><span id="progress-text">0 of 55 earned · 0%</span><span id="progress-platinum">Platinum: not yet</span></div>
-      <div class="progress-bar" role="progressbar" aria-label="Trophies earned" aria-valuemin="0" aria-valuemax="55" aria-valuenow="0" id="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
-    </div>
+  </div>
+  <div class="topstats">
+    <div class="stat"><b id="earnedCount">0 / 55</b><span>earned</span></div>
+    <div class="stat"><b>1,350</b><span>PSN points</span></div>
+    <div class="stat"><b id="platinumState">Platinum: not yet</b><span>1P · 2G · 6S · 46B</span></div>
+  </div>
+  <div class="topactions">
+    <label class="shield"><input type="checkbox" id="shieldToggle" checked> Spoiler shield</label>
+    <button id="exportBtn" type="button">Export</button>
+    <button id="importBtn" type="button">Import</button>
+    <span id="savedNote" class="saved">✓ Saved in this browser</span>
+    <input type="file" id="importFile" accept="application/json" hidden>
   </div>
 </header>
 
-<nav class="tabs" aria-label="Guide sections">
-  <button class="tab active" data-view="tracker" type="button">Tracker</button>
-  <button class="tab" data-view="roadmap" type="button">Roadmap to Platinum</button>
-  <button class="tab" data-view="missables" type="button">Missables</button>
-  <button class="tab" data-view="strategies" type="button">Strategies &amp; Tips</button>
-  <button class="tab" data-view="about" type="button">About &amp; Sources</button>
+<section class="audit" id="auditStrip" aria-label="Audit"></section>
+
+<nav class="tabs" role="tablist" aria-label="Sections">
+  <button type="button" data-tab="tracker" class="active" role="tab">Tracker</button>
+  <button type="button" data-tab="roadmap" role="tab">Roadmap</button>
+  <button type="button" data-tab="missables" role="tab">Missables &amp; At Risk</button>
+  <button type="button" data-tab="sources" role="tab">Sources</button>
 </nav>
 
 <main>
-  <section id="view-tracker" class="view active" aria-label="Trophy tracker">
-    <div class="toolbar">
-      <label class="search-box">Search <input id="search" type="search" placeholder="Search name or description…" autocomplete="off"></label>
-      <div class="filters" id="kind-filters" role="group" aria-label="Filter by kind">
-        <button class="chip active" data-kind="all" type="button">All 55</button>
-        <button class="chip" data-kind="story" type="button">Story</button>
-        <button class="chip" data-kind="missable" type="button">Missable</button>
-        <button class="chip" data-kind="collectibles" type="button">Collectibles</button>
-        <button class="chip" data-kind="activities" type="button">Activities</button>
-        <button class="chip" data-kind="side" type="button">Side &amp; crime</button>
-        <button class="chip" data-kind="platinum" type="button">Platinum &amp; 100%</button>
-        <button class="chip" data-kind="online" type="button">Online</button>
-      </div>
-      <div class="toolbar-row">
-        <label>Grade
-          <select id="grade-filter">
-            <option value="all">All grades</option>
-            <option value="platinum">Platinum</option>
-            <option value="gold">Gold</option>
-            <option value="silver">Silver</option>
-            <option value="bronze">Bronze</option>
-          </select>
-        </label>
-        <label>Show
-          <select id="earned-filter">
-            <option value="all">Earned &amp; unearned</option>
-            <option value="earned">Earned only</option>
-            <option value="unearned">Unearned only</option>
-          </select>
-        </label>
-        <label class="spoiler-toggle"><input id="spoiler" type="checkbox"> Hide story spoilers</label>
-        <span class="spacer"></span>
-        <button id="export-btn" type="button">Export progress</button>
-        <button id="import-btn" type="button">Import progress</button>
-        <input id="import-file" type="file" accept="application/json,.json" hidden>
-        <button id="reset-btn" type="button" class="danger">Reset</button>
-      </div>
-      <p class="toolbar-note" id="filter-note"></p>
+  <section id="tab-tracker" class="tabpage active" role="tabpanel">
+    <div class="filters" id="filters"></div>
+    <div class="searchrow">
+      <input id="search" type="search" placeholder="Search name or description…" aria-label="Search trophies">
+      <select id="gradeFilter" aria-label="Filter by grade">
+        <option value="">All grades</option>
+        <option value="platinum">Platinum</option>
+        <option value="gold">Gold</option>
+        <option value="silver">Silver</option>
+        <option value="bronze">Bronze</option>
+      </select>
+      <select id="sortSel" aria-label="Sort trophies">
+        <option value="roadmap">Roadmap order</option>
+        <option value="num">Official number</option>
+        <option value="grade">Grade</option>
+      </select>
     </div>
-    <p class="spoiler-note" id="spoiler-note" hidden>Spoiler hiding is on: the names and descriptions of the 12 story trophies are hidden until you tick them earned.</p>
     <div class="tracker-grid">
-      <div class="list-col">
-        <p class="list-meta" id="list-meta"></p>
-        <ul class="trophy-list" id="trophy-list"></ul>
+      <div class="listcol">
+        <div id="listMeta" class="listmeta"></div>
+        <ol id="trophyList" class="trophylist"></ol>
       </div>
-      <aside class="detail-col" id="detail" aria-live="polite">
-        <p class="detail-empty">Select a trophy on the left to read its guide and sources here.</p>
+      <aside class="detailcol">
+        <div id="nextUp" class="nextup"></div>
+        <article id="detail" class="detail"></article>
       </aside>
     </div>
   </section>
 
-  <section id="view-roadmap" class="view" aria-label="Roadmap to the platinum">
-    <h2 id="roadmap-title">Road to the Platinum — 3 steps</h2>
-    <p id="roadmap-intro"></p>
-    <ol class="roadmap" id="roadmap-list"></ol>
+  <section id="tab-roadmap" class="tabpage" role="tabpanel">
+    <div id="roadmap" class="roadmap"></div>
   </section>
 
-  <section id="view-missables" class="view" aria-label="Missable trophies">
-    <h2 id="missables-title">Missable trophies</h2>
-    <p id="missables-summary"></p>
-    <h3>The one to watch</h3>
-    <div id="missable-flagged"></div>
-    <h3>Confirmed not missable</h3>
-    <ul id="missable-safe"></ul>
-    <h3>Save advice</h3>
-    <p id="missable-save"></p>
+  <section id="tab-missables" class="tabpage" role="tabpanel">
+    <div id="missables" class="missables"></div>
   </section>
 
-  <section id="view-strategies" class="view" aria-label="Strategies and tips">
-    <h2>Essential strategies</h2>
-    <ol class="strategy-list" id="strategy-list"></ol>
-    <h2>Essential tips</h2>
-    <ol class="tip-list" id="tip-list"></ol>
-  </section>
-
-  <section id="view-about" class="view" aria-label="About and sources">
-    <h2>About this guide</h2>
-    <div id="about-body"></div>
-    <h2>Sources</h2>
-    <p>Every trophy's guide names its sources beside it. These are the sources used across the guide, all accessed 19 November 2026.</p>
-    <ul class="source-list" id="source-list"></ul>
+  <section id="tab-sources" class="tabpage" role="tabpanel">
+    <div id="sources" class="sources"></div>
   </section>
 </main>
 
-<footer>
-  <p>Unofficial fan-made guide. Not published by, endorsed by, or affiliated with Rockstar Games. No Rockstar logo or artwork is used. Trophy names, descriptions and grades are shown as PlayStation publishes them.</p>
-  <p>Progress is saved only in this browser (localStorage). Export it to keep a backup.</p>
+<footer class="foot">
+  <p>The Leonida Ledger — an unofficial fan guide. Trophy names and descriptions are shown as PlayStation publishes them; every guide is written for this entry, in its own words, and cites its sources. No Rockstar Games logo, artwork or screenshots are used. Works fully offline; progress never leaves this browser.</p>
 </footer>
 
 <script type="module" src="app.js"></script>
