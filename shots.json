@@ -1,1 +1,5 @@
-[{"file":"1-checklist.jpg","note":"Tracker with the Positive Mental Attitude guide open in the detail pane, progress bar, kind filters and spoiler toggle visible; 13 of 55 earned.","path":"/","viewport":{"height":800,"width":1280}},{"file":"2-roadmap.jpg","note":"Roadmap to the Platinum: the 3 steps with their trophy lists.","path":"/","view":"roadmap","viewport":{"height":800,"width":1280}},{"file":"3-missables.jpg","note":"Missables page: the one potentially missable trophy flagged, the rest confirmed not missable.","path":"/","view":"missables","viewport":{"height":800,"width":1280}},{"file":"4-about.jpg","note":"About & Sources: how the guide was made, the release date, the warning, and the source list.","path":"/","view":"about","viewport":{"height":800,"width":1280}}]
+[
+  { "file": "1-checklist.jpg", "path": "/", "viewport": { "width": 1280, "height": 800 } },
+  { "file": "2-silver.jpg", "path": "/", "grade": "silver", "viewport": { "width": 1280, "height": 800 } },
+  { "file": "3-bronze.jpg", "path": "/", "grade": "bronze", "scroll": 1400, "viewport": { "width": 1280, "height": 800 } }
+]
